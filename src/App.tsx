@@ -5,7 +5,8 @@ function App() {
     <>
         <nav>
           <ul>
-            <li>HLS</li>
+            <li><a href={"/"}>HLS</a></li>
+            <li><input placeholder={"search"}/></li>
             </ul>
     </nav>
       <br />
