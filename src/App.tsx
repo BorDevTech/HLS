@@ -3,7 +3,11 @@ import "./App.css";
 function App() {
   return (
     <>
-      Navbar
+        <nav>
+          <ul>
+            <li>HLS</li>
+            </ul>
+    </nav>
       <br />
       Welcome
       <br />
