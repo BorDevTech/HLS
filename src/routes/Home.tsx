@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <>
       <nav>
@@ -13,7 +15,7 @@ const Home = () => {
             <input placeholder={"search"} />
           </li>
           <li>
-            <button>
+            <button onClick={() => navigate("/profile/favorites")}>
               <Link to="/profile/favorites">Favorites</Link>
             </button>
           </li>
