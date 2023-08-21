@@ -8,8 +8,13 @@ const Menu = () => {
   return (
     <>
       <CUR.Menu>
-        <CUR.MenuButton as={CUR.Button} rightIcon={<CUI.HamburgerIcon />}>
-          Menu
+        <CUR.MenuButton as={CUR.Button}>
+          <CUR.Center>
+            <CUR.HStack>
+              <CUR.Text>Menu</CUR.Text>
+              <CUI.HamburgerIcon />
+            </CUR.HStack>
+          </CUR.Center>
         </CUR.MenuButton>
         <CUR.MenuList>
           <CUR.MenuGroup title="Account">

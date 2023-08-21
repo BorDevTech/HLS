@@ -5,9 +5,9 @@ import { useColorMode } from "@chakra-ui/react";
 const SearchBar = () => {
   const { colorMode } = useColorMode();
   return (
-    <>
+    <CUR.Box>
       <CUR.InputGroup>
-        <CUR.Input placeholder={"search"} />
+        <CUR.Input placeholder={"search"} htmlSize={48} width="auto" />
         <CUR.InputRightElement>
           <CUR.IconButton
             colorScheme="blackAlpha.50"
@@ -20,7 +20,7 @@ const SearchBar = () => {
           />
         </CUR.InputRightElement>
       </CUR.InputGroup>
-    </>
+    </CUR.Box>
   );
 };
 

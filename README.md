@@ -1,6 +1,6 @@
 # React + TypeScript + Vite
 
-This is a test project can be found [here](https://bordevtech.github.io/HLS)
+This is a test project called Have.Let.Sell. longhand for HLS and can be found [here](https://bordevtech.github.io/HLS)
 
 ## Expanding the ESLint configuration
 
