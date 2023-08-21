@@ -13,22 +13,30 @@ const Menu = () => {
         </CUR.MenuButton>
         <CUR.MenuList>
           <CUR.MenuGroup title="Account">
-            <CUR.MenuItem icon={<CUI.AddIcon />}>Profile</CUR.MenuItem>
-            <CUR.MenuItem icon={<CUI.AddIcon />}>Payments</CUR.MenuItem>
+            {
+              <>
+                <CUR.MenuItem icon={<CUI.AddIcon />}>
+                  <Link to="/profile">Profile</Link>
+                </CUR.MenuItem>
+                <CUR.MenuItem icon={<CUI.AddIcon />}>
+                  Payment Methods
+                </CUR.MenuItem>
+                <CUR.MenuItem icon={<CUI.AddIcon />}>Favorites</CUR.MenuItem>
+                <CUR.MenuItem icon={<CUI.AddIcon />}>
+                  <Link to="/guides/faq/addListing">Add Listing</Link>
+                </CUR.MenuItem>
+              </>
+            }
+
             <CUR.MenuItem icon={<CUI.AddIcon />}>Searches</CUR.MenuItem>
-            <CUR.MenuItem icon={<CUI.AddIcon />}>Favorites</CUR.MenuItem>
           </CUR.MenuGroup>
           <CUR.MenuGroup title="Help">
             <CUR.MenuItem>
               <Link to="/guides/faq">F.A.Q.'s</Link>
             </CUR.MenuItem>
+            <CUR.MenuItem>Attend a Workshop</CUR.MenuItem>
+            <CUR.MenuItem>Contact Us</CUR.MenuItem>
           </CUR.MenuGroup>
-
-          <CUR.MenuItem>
-            <Link to="/guides/faq/addListing">Add Listing</Link>
-          </CUR.MenuItem>
-          <CUR.MenuItem>Delete</CUR.MenuItem>
-          <CUR.MenuItem>Attend a Workshop</CUR.MenuItem>
 
           <CUR.MenuGroup title="Actions">
             <CUR.MenuDivider />
@@ -59,19 +67,25 @@ const Menu = () => {
                 </Link>
               </CUR.Box>
               {colorMode === "light" ? (
-                <button type="button" onClick={toggleColorMode}>
+                <CUR.Box
+                  aria-label="dark mode toggle"
+                  onClick={toggleColorMode}
+                >
                   <CUR.VStack>
                     <CUI.MoonIcon />
                     <CUR.Text>dark mode</CUR.Text>
                   </CUR.VStack>
-                </button>
+                </CUR.Box>
               ) : (
-                <button type="button" onClick={toggleColorMode}>
+                <CUR.Box
+                  aria-label="light mode toggle"
+                  onClick={toggleColorMode}
+                >
                   <CUR.VStack>
                     <CUI.SunIcon />
                     <CUR.Text>light mode</CUR.Text>
                   </CUR.VStack>
-                </button>
+                </CUR.Box>
               )}
             </CUR.HStack>
           </CUR.MenuGroup>
