@@ -10,8 +10,6 @@ const Home = () => {
       <br />
       Welcome
       <br />
-      Footer
-      <br />
     </>
   );
 };
