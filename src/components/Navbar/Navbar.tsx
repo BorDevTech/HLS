@@ -5,28 +5,24 @@ const Navbar = () => {
   return (
     <>
       <CUR.HStack
-        justifyContent={{
-          base: "space-evenly",
-          md: "space-between",
-          lg: "space-between",
-        }}
-        padding={2}
+        justifyContent={"space-between"}
+        p={{ base: 2, md: 3, lg: 4 }}
       >
         <CUR.Show above="base">
           <Nav.Brand />
 
-          <CUR.Show above="lg">
-            <Nav.SearchBar />
-          </CUR.Show>
           <CUR.Show above="md">
+            <CUR.Show above="lg">
+              <Nav.SearchBar />
+            </CUR.Show>
             <Nav.Navigation />
           </CUR.Show>
-
           <CUR.Show below="md">
             <Nav.Menu />
           </CUR.Show>
         </CUR.Show>
       </CUR.HStack>
+      <CUR.Divider />
     </>
   );
 };

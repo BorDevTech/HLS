@@ -4,15 +4,17 @@ import * as CUR from "@chakra-ui/react";
 const Navigation = () => {
   return (
     <>
-      <CUR.HStack>
-        <Link to="/guides/faq">Buy</Link>
-        <Link to="/guides/faq">Sell</Link>
-        <Link to="/guides/faq">Favorites</Link>
-        <Link to="/guides/faq">Rent</Link>
+      <CUR.Box>
+        <CUR.HStack>
+          <Link to="/buy">Buy</Link>
+          <Link to="/dashboard/listing/add">Sell</Link>
+          <Link to="/profile/favorites">Favorites</Link>
+          <Link to="/rent">Rent</Link>
 
-        <Link to="/profile">Profile</Link>
-        <Link to="/login">Login</Link>
-      </CUR.HStack>
+          <Link to="/profile">Profile</Link>
+          <Link to="/login">Login</Link>
+        </CUR.HStack>
+      </CUR.Box>
     </>
   );
 };

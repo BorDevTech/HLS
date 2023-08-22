@@ -6,7 +6,9 @@ const Brand = () => {
 
   return (
     <Link to="/">
-      <CUR.Heading>{AppName}</CUR.Heading>
+      <CUR.Box>
+        <CUR.Heading>{AppName}</CUR.Heading>
+      </CUR.Box>
     </Link>
   );
 };
