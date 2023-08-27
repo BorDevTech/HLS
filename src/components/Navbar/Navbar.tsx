@@ -12,9 +12,11 @@ const Navbar = () => {
           <Nav.Brand />
 
           <CUR.Show above="md">
-            <CUR.Show above="lg">
-              <Nav.SearchBar />
-            </CUR.Show>
+            <CUR.Center>
+              <CUR.Show above="lg">
+                <Nav.SearchBar />
+              </CUR.Show>
+            </CUR.Center>
             <Nav.Navigation />
           </CUR.Show>
           <CUR.Show below="md">

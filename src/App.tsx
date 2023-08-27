@@ -8,9 +8,9 @@ function App() {
     <>
       <CUR.Grid
         templateAreas={{
-          base: `"Navbar" "Main" "Footer"`,
-          md: `"Navbar" "Main" "Footer"`,
-          lg: `"Navbar" "Main" "Footer"`,
+          base: `"Navbar" "Main"`,
+          md: `"Navbar" "Main"`,
+          lg: `"Navbar" "Main"`,
         }}
       >
         <CUR.GridItem area={"Navbar"}>
@@ -54,9 +54,6 @@ function App() {
             <Route path="/view/dashboard/listing/add" element={<Home />} />
             {/* End of Seller Routes */}
           </Routes>
-        </CUR.GridItem>
-        <CUR.GridItem area={"Footer"}>
-          <p>footer</p>
         </CUR.GridItem>
       </CUR.Grid>
     </>

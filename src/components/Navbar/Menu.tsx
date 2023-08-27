@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import * as CUR from "@chakra-ui/react";
 import * as CUI from "@chakra-ui/icons";
 import { useColorMode } from "@chakra-ui/react";
+import * as RI from "react-icons/cg";
 
 const Menu = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -31,7 +32,7 @@ const Menu = () => {
               <CUR.MenuGroup title="Account">
                 {
                   <>
-                    <CUR.MenuItem icon={<CUI.AddIcon />}>
+                    <CUR.MenuItem icon={<RI.CgProfile />}>
                       <Link to="/profile">Profile</Link>
                     </CUR.MenuItem>
                     <CUR.MenuItem icon={<CUI.AddIcon />}>
@@ -79,7 +80,7 @@ const Menu = () => {
                   <CUR.Box>
                     <Link to="/profile">
                       <CUR.VStack>
-                        <CUI.UnlockIcon />
+                        <RI.CgProfile />
                         <CUR.Text>Profile</CUR.Text>
                       </CUR.VStack>
                     </Link>
