@@ -1,9 +1,48 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, Profile, Register } from "./routes";
+import * as pages from "./routes";
+import * as dashboard from "./routes/Dashboard";
 import * as CUR from "@chakra-ui/react";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
+  const routes = [
+    /* 
+    // NonRegistered-User Routes
+    // Usage: All users can access these channels regardless of registry 
+    */
+    { path: "/", element: <pages.Home /> },
+    { path: "/register", element: <pages.Register /> },
+    { path: "/view/dashboard/rent", element: <dashboard.Rent /> },
+    { path: "/view/dashboard/buy", element: <dashboard.Buy /> },
+    { path: "/view/dashboard/guides/faq", element: <pages.Home /> },
+    /*
+    //End of NonRegistered-User Routes  
+    */
+    /*
+    //Listing Routes
+    //signifies the channel of rent or buy used by the users to view listings
+    */
+    { path: "/view/dashboard/*/listing/:id", element: <pages.Home /> },
+    /*
+    //End of Listing Views
+    //Registered User Routes
+    */
+    { path: "/view/dashboard/profile/create", element: <pages.Profile /> },
+    { path: "/login", element: <pages.Login /> },
+    { path: "/view/dashboard/profile", element: <pages.Profile /> },
+    { path: "/view/dashboard/profile/edit", element: <pages.Profile /> },
+    { path: "/view/dashboard/profile/favorites", element: <pages.Home /> },
+    // {/* End of Registered User Routes */}
+    // {/* Seller Routes */}
+    {
+      path: "/view/dashboard/sell/guides/faq/addListing",
+      element: <pages.Home />,
+    },
+    { path: "/view/dashboard/sell", element: <dashboard.Sell /> },
+    { path: "/view/dashboard/listing/add", element: <pages.Home /> },
+    // {/* End of Seller Routes */}
+  ];
+
   return (
     <>
       <CUR.Grid
@@ -20,39 +59,11 @@ function App() {
         </CUR.GridItem>
         <CUR.GridItem area={"Main"}>
           <Routes>
-            {/* NonRegistered-User Routes 
-            Usage: All users can access these channels regardless of registry */}
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/view/dashboard/rent" element={<Home />} />
-            <Route path="/view/dashboard/buy" element={<Home />} />
-            <Route path="/view/dashboard/guides/faq" element={<Home />} />
-            {/* End of NonRegistered-User Routes */}
-            {/*  Listing Routes
-             *: signifies the channel of rent or buy used by the users to view listings*/}
-            <Route path="/view/dashboard/*/listing/:id" element={<Home />} />
-            {/* End of Listing Views */}
-            {/* Registered User Routes */}
-            <Route
-              path="/view/dashboard/profile/create"
-              element={<Profile />}
-            />
-            <Route path="/login" element={<Login />} />
-            <Route path="/view/dashboard/profile" element={<Profile />} />
-            <Route path="/view/dashboard/profile/edit" element={<Profile />} />
-            <Route
-              path="/view/dashboard/profile/favorites"
-              element={<Home />}
-            />
-            {/* End of Registered User Routes */}
-            {/* Seller Routes */}
-            <Route
-              path="/view/dashboard/sell/guides/faq/addListing"
-              element={<Home />}
-            />
-            <Route path="/view/dashboard/sell" element={<Home />} />
-            <Route path="/view/dashboard/listing/add" element={<Home />} />
-            {/* End of Seller Routes */}
+            {routes.map((route) => (
+              <>
+                <Route path={route.path} element={route.element} />
+              </>
+            ))}
           </Routes>
         </CUR.GridItem>
       </CUR.Grid>
