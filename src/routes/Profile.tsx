@@ -1,7 +1,7 @@
 import * as CUR from "@chakra-ui/react";
-import * as CUI from "@chakra-ui/icons";
-import { useColorMode } from "@chakra-ui/react";
-import { Children } from "react";
+// import * as CUI from "@chakra-ui/icons";
+// import { useColorMode } from "@chakra-ui/react";
+// import { Children } from "react";
 
 const Profile = () => {
   const userProfile = [
