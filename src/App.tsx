@@ -3,6 +3,7 @@ import * as pages from "./routes";
 import * as dashboard from "./routes/Dashboard";
 import * as CUR from "@chakra-ui/react";
 import Navbar from "./components/Navbar/Navbar";
+import { useRef, useState, useEffect } from "react";
 
 function App() {
   const routes = [
@@ -42,6 +43,13 @@ function App() {
     { path: "/view/dashboard/listing/add", element: <pages.Home /> },
     // {/* End of Seller Routes */}
   ];
+  const [navbarSize, setNavbarSize] = useState(0);
+  const navSize = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // @ts-ignore
+    setNavbarSize(navSize.current?.clientHeight);
+  });
 
   return (
     <>
@@ -52,17 +60,19 @@ function App() {
           lg: `"Navbar" "Main"`,
         }}
       >
-        <CUR.GridItem area={"Navbar"}>
+        <CUR.GridItem area={"Navbar"} ref={navSize}>
           <nav>
             <Navbar />
           </nav>
         </CUR.GridItem>
-        <CUR.GridItem area={"Main"}>
+        <CUR.GridItem area={"Main"} h={window.innerHeight - navbarSize}>
           <Routes>
             {routes.map((route) => (
-              <>
-                <Route path={route.path} element={route.element} />
-              </>
+              <Route
+                path={route.path}
+                element={route.element}
+                key={route.path}
+              />
             ))}
           </Routes>
         </CUR.GridItem>

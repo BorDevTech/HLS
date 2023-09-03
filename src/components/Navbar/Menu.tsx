@@ -33,7 +33,7 @@ const Menu = () => {
                 {
                   <>
                     <CUR.MenuItem icon={<RI.CgProfile />}>
-                      <Link to="/profile">Profile</Link>
+                      <Link to="/view/dashboard/profile">Profile</Link>
                     </CUR.MenuItem>
                     <CUR.MenuItem icon={<CUI.AddIcon />}>
                       Payment Methods
@@ -78,7 +78,7 @@ const Menu = () => {
                     </Link>
                   </CUR.Box>
                   <CUR.Box>
-                    <Link to="/profile">
+                    <Link reloadDocument to="/view/dashboard/profile">
                       <CUR.VStack>
                         <RI.CgProfile />
                         <CUR.Text>Profile</CUR.Text>
