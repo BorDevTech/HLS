@@ -3,6 +3,7 @@ import * as CUI from "@chakra-ui/icons";
 import { useRef } from "react";
 
 function EditableInputControls() {
+  //@ts-ignore
   const inputRef = useRef<HTMLInputElement>(null);
 
   function EditableControls() {

@@ -1,13 +1,13 @@
 import * as CUR from "@chakra-ui/react";
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 interface Props {}
 
 const AccountManagement = ({}: Props) => {
-  const ManagementRef = React.useRef();
+  const ManagementRef = useRef<HTMLElement | null>(null);
   return (
     <>
-      <CUR.AccordionItem ref={ManagementRef}>
+      <CUR.AccordionItem>
         <h2>
           <CUR.AccordionButton>
             <CUR.Box as="span" flex="1" textAlign="left">
