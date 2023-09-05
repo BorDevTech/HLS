@@ -1,43 +1,34 @@
 import * as CUR from "@chakra-ui/react";
-import * as CUI from "@chakra-ui/icons";
-import React, { useRef, useState } from "react";
-import EditableInputControls from "../components/EditableInput/EditableInputControls";
+// import * as CUI from "@chakra-ui/icons";
+import {
+  // React,
+  // useRef,
+  useState,
+} from "react";
+// import EditableInputControls from "../components/EditableInput/EditableInputControls";
 import ProfileInformation from "../components/ProfileMenuList/ProfileInformation";
 import AccountManagement from "./../components/ProfileMenuList/AccountManagement";
 import PartnersServices from "./../components/ProfileMenuList/PartnersServices";
 import PaymentsSubscriptions from "./../components/ProfileMenuList/PaymentsSubscriptions";
+import AccountSettings from "./../components/ProfileMenuList/AccountSettings";
+import CommunicationNotifications from "./../components/ProfileMenuList/CommunicationNotifications";
+import SecurityCenter from "./../components/ProfileMenuList/SecurityCenter";
+import HelpPlatform from "./../components/ProfileMenuList/HelpPlatform";
 
 const Profile = () => {
-  type UserProfile = {
-    Image: string;
-    FullName: string;
-    Email: string;
-    Phone: number;
-  };
-  const User: UserProfile = {
-    Image: "",
-    FullName: "",
-    Email: "",
-    Phone: 6783675727,
-  };
+  //@ts-ignore
+  const [displayPanel, setDisplayPanel] = useState({
+    0: <ProfileInformation />,
+    1: <AccountManagement />,
+    2: <PartnersServices />,
+    3: <PaymentsSubscriptions />,
+    4: <AccountSettings />,
+    5: <CommunicationNotifications />,
+    6: <SecurityCenter />,
+    7: <HelpPlatform />,
+  });
 
-  const [imageSRC, setImageSRC] = useState(User.Image);
-  const [fullName, setFullName] = useState(User.FullName);
-  const [email, setEmail] = useState(User.Email);
-  const [phone, setPhone] = useState(User.Phone);
-
-  const handleFullNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newFullName = event.target.value;
-    setFullName(newFullName);
-    User.FullName = newFullName;
-  };
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newImageSRC = event.target.value;
-    setImageSRC(newImageSRC);
-    User.Image = newImageSRC;
-  };
-
-  const currentRef = useRef();
+  // const currentRef = useRef();
   return (
     <>
       <CUR.Grid
@@ -79,12 +70,12 @@ const Profile = () => {
           <CUR.Accordion>
             <ProfileInformation />
 
-            <AccountManagement />
+            {/* <AccountManagement />
             <PartnersServices />
-            <PaymentsSubscriptions />
+            <PaymentsSubscriptions /> */}
           </CUR.Accordion>
         </CUR.GridItem>
-        <CUR.GridItem area={"sect2"} w={"80vw"} border={"2px"}>
+        {/*<CUR.GridItem area={"sect2"} w={"80vw"} border={"2px"}>
           <CUR.Box bg={"blue"} p={5}>
             <CUR.Center>
               <CUR.Heading>Profile</CUR.Heading>
@@ -115,8 +106,8 @@ const Profile = () => {
                 ref={currentRef}
               ></CUR.Box>
             </CUR.VStack>
-          </CUR.Center>
-        </CUR.GridItem>
+          </CUR.Center> 
+        </CUR.GridItem>*/}
       </CUR.Grid>
     </>
   );

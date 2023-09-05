@@ -1,36 +1,196 @@
 import * as CUR from "@chakra-ui/react";
+// import ListControls from "./../components/MapListControls/ListControls";
+import React, { FC } from "react";
+// import AppleMaps from "./../components/AppleMap/AppleMaps";
 
-interface Props {}
+interface Props {
+  displayHeight: number;
+}
 
-const Home = ({}: Props) => {
+const Home: FC<Props> = ({}) => {
+  const routeWidth = window.innerWidth;
+  const [listIndex, setListIndex] = React.useState<number>(-1);
+
   return (
     <>
       <CUR.Grid
-        id="HomeGrid"
         templateAreas={{
-          base: `"Map MapList" `,
+          base: `"Map" "MapList" `,
           md: `"Map MapList" `,
           lg: `"Map MapList" `,
         }}
-        h={"100%"}
+        h={{ base: "75%", md: "100%" }}
       >
-        <CUR.GridItem area={"Map"} bg={"yellow.500"} border={"2px"}>
-          <CUR.Box w={"100%"} h={"100%"} borderColor={"black"}>
-            <iframe
+        <CUR.Show above={"base"}>
+          <CUR.GridItem
+            area={"Map"}
+            w={{ base: routeWidth, md: routeWidth * 0.75 }}
+            borderColor={"orange"}
+            border={"1px"}
+          >
+            <CUR.Box
+              as="iframe"
               title="Google Map"
               src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14054.5927325246!2d-82.68073525!3d28.278682850000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1693097872792!5m2!1sen!2sus"
-              width={"100%"}
-              height={"100%"}
-              style={{ border: 0 }}
+              h={"100%"}
+              w={"100%"}
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </CUR.Box>
-        </CUR.GridItem>
-        <CUR.GridItem area={"MapList"} w={"50%"}>
-          <CUR.Square bg={"orange.500"}></CUR.Square>
-        </CUR.GridItem>
+            />
+          </CUR.GridItem>
+        </CUR.Show>
+        <CUR.Show above="base">
+          <CUR.GridItem
+            area={"MapList"}
+            h={"100%"}
+            w={"100%"}
+            // ref={listSize}
+          >
+            {/* <ListControls
+            // listWidth={mapListSize}
+            /> */}
+
+            <CUR.Center>
+              <CUR.HStack>
+                <CUR.Box>dwad</CUR.Box>
+                <CUR.Box>dwad</CUR.Box>
+                <CUR.Box>dwad</CUR.Box>
+                <CUR.Box>dwad</CUR.Box>
+              </CUR.HStack>
+            </CUR.Center>
+            <CUR.Accordion defaultIndex={-1} index={listIndex}>
+              <CUR.AccordionItem>
+                <CUR.Card>
+                  <h2>
+                    <CUR.AccordionButton onClick={() => setListIndex(0)}>
+                      <CUR.Box flex="1" textAlign="center">
+                        <CUR.Center>
+                          <CUR.HStack>
+                            <span>Price : $100,000</span>
+                          </CUR.HStack>
+                        </CUR.Center>
+                      </CUR.Box>
+                      <CUR.AccordionIcon />
+                    </CUR.AccordionButton>
+                  </h2>
+                </CUR.Card>
+                <CUR.AccordionPanel pb={4}>
+                  <CUR.VStack>
+                    <CUR.Center>
+                      <CUR.Skeleton h={350} w={350} />
+                    </CUR.Center>
+                    <CUR.VStack>
+                      <CUR.HStack>
+                        <CUR.Button>Prev</CUR.Button>
+                        <CUR.Button>Next</CUR.Button>
+                      </CUR.HStack>
+                      <CUR.Button>Details</CUR.Button>
+                    </CUR.VStack>
+                  </CUR.VStack>
+                </CUR.AccordionPanel>
+              </CUR.AccordionItem>
+              <CUR.AccordionItem>
+                <CUR.Card>
+                  <h2>
+                    <CUR.AccordionButton onClick={() => setListIndex(1)}>
+                      <CUR.Box flex="1" textAlign="center">
+                        <CUR.Center>
+                          <CUR.HStack>
+                            <CUR.Skeleton h="20px" w="20px" />
+                            <span>Price : $120,000</span>
+                          </CUR.HStack>
+                        </CUR.Center>
+                      </CUR.Box>
+                      <CUR.AccordionIcon />
+                    </CUR.AccordionButton>
+                  </h2>
+                </CUR.Card>
+                <CUR.AccordionPanel pb={4}>
+                  <CUR.VStack>
+                    <CUR.Center>
+                      <CUR.Skeleton h={350} w="350px" />
+                    </CUR.Center>
+                    <CUR.VStack>
+                      <CUR.HStack>
+                        <CUR.Button>Prev</CUR.Button>
+                        <CUR.Button>Next</CUR.Button>
+                      </CUR.HStack>
+                      <CUR.Button>Details</CUR.Button>
+                    </CUR.VStack>
+                  </CUR.VStack>
+                </CUR.AccordionPanel>
+              </CUR.AccordionItem>
+              <CUR.AccordionItem>
+                <CUR.Card>
+                  <h2>
+                    <CUR.AccordionButton onClick={() => setListIndex(2)}>
+                      <CUR.Box flex="1" textAlign="center">
+                        <CUR.Center>
+                          <CUR.HStack>
+                            <CUR.Skeleton h="20px" w="20px" />
+                            <span>Price : $130,000</span>
+                          </CUR.HStack>
+                        </CUR.Center>
+                      </CUR.Box>
+                      <CUR.AccordionIcon />
+                    </CUR.AccordionButton>
+                  </h2>
+                </CUR.Card>
+                <CUR.AccordionPanel pb={4}>
+                  <CUR.VStack>
+                    <CUR.Center>
+                      <CUR.Skeleton h={350} w="350px" />
+                    </CUR.Center>
+                    <CUR.VStack>
+                      <CUR.HStack>
+                        <CUR.Button>Prev</CUR.Button>
+                        <CUR.Button>Next</CUR.Button>
+                      </CUR.HStack>
+                      <CUR.Button>Details</CUR.Button>
+                    </CUR.VStack>
+                  </CUR.VStack>
+                </CUR.AccordionPanel>
+              </CUR.AccordionItem>
+              <CUR.AccordionItem>
+                <CUR.Card>
+                  <h2>
+                    <CUR.AccordionButton onClick={() => setListIndex(3)}>
+                      <CUR.Box flex="1" textAlign="center">
+                        <CUR.Center>
+                          <CUR.HStack>
+                            <CUR.Skeleton h="20px" w="20px" />
+                            <span>Price : $140,000</span>
+                          </CUR.HStack>
+                        </CUR.Center>
+                      </CUR.Box>
+                      <CUR.AccordionIcon />
+                    </CUR.AccordionButton>
+                  </h2>
+                </CUR.Card>
+                <CUR.AccordionPanel pb={4}>
+                  <CUR.VStack>
+                    <CUR.Button onClick={() => setListIndex(listIndex - 1)}>
+                      UP
+                    </CUR.Button>
+
+                    <CUR.Center>
+                      <CUR.Skeleton h={350} w="350px" />
+                    </CUR.Center>
+                    <CUR.VStack>
+                      <CUR.HStack>
+                        <CUR.Button>Prev</CUR.Button>
+                        <CUR.Button>Details</CUR.Button>
+                        <CUR.Button>Next</CUR.Button>
+                      </CUR.HStack>
+                      <CUR.Button>DOWn</CUR.Button>
+                    </CUR.VStack>
+                  </CUR.VStack>
+                </CUR.AccordionPanel>
+              </CUR.AccordionItem>
+            </CUR.Accordion>
+          </CUR.GridItem>
+        </CUR.Show>
       </CUR.Grid>
     </>
   );

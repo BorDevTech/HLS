@@ -1,13 +1,34 @@
 import * as CUR from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 interface Props {}
 
 const ProfileInformation = ({}: Props) => {
-  const AccountRef = useRef();
+  const [UserProfile, setUserProfile] = useState({
+    Image: "",
+    FirstName: "D",
+    LastName: "R",
+    Email: "",
+    Phone: 0,
+  });
+
+  //@ts-ignore
+  const handleUserProfileChange = (e) => {
+    setUserProfile({ ...UserProfile, [e.target.name]: e.target.value });
+  };
+  const AccountRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
+      <CUR.Input onChange={handleUserProfileChange} name="FirstName" />
+      <CUR.Input onChange={handleUserProfileChange} name="LastName" />
+      <CUR.Input onChange={handleUserProfileChange} name="Email" />
+      <CUR.Input onChange={handleUserProfileChange} name="Image" />
+      <CUR.Avatar
+        name={`${UserProfile.FirstName} ${UserProfile.LastName}`}
+        src={UserProfile.Image}
+        size={"2xl"}
+      />
       <CUR.AccordionItem ref={AccountRef}>
         <h2>
           <CUR.AccordionButton>
