@@ -17,16 +17,16 @@ import HelpPlatform from "./../components/ProfileMenuList/HelpPlatform";
 
 const Profile = () => {
   //@ts-ignore
-  const [displayPanel, setDisplayPanel] = useState({
-    0: <ProfileInformation />,
-    1: <AccountManagement />,
-    2: <PartnersServices />,
-    3: <PaymentsSubscriptions />,
-    4: <AccountSettings />,
-    5: <CommunicationNotifications />,
-    6: <SecurityCenter />,
-    7: <HelpPlatform />,
-  });
+  const [displayPanel, setDisplayPanel] = useState([
+    { index: 0, element: <ProfileInformation /> },
+    { index: 1, element: <AccountManagement /> },
+    { index: 2, element: <PartnersServices /> },
+    { index: 3, element: <PaymentsSubscriptions /> },
+    { index: 4, element: <AccountSettings /> },
+    { index: 5, element: <CommunicationNotifications /> },
+    { index: 6, element: <SecurityCenter /> },
+    { index: 7, element: <HelpPlatform /> },
+  ]);
 
   // const currentRef = useRef();
   return (
@@ -38,41 +38,10 @@ const Profile = () => {
         h={`100%`}
       >
         <CUR.GridItem area={"sect1"} w={"20vw"} border={"2px"}>
-          <CUR.TableContainer>
-            <CUR.Table>
-              <CUR.Thead>
-                <CUR.Tr>
-                  <CUR.Th>
-                    <CUR.Center>Account Settings</CUR.Center>
-                  </CUR.Th>
-                </CUR.Tr>
-              </CUR.Thead>
-              <CUR.Tbody>
-                <CUR.Tr>
-                  <CUR.Td>
-                    <CUR.Center>Communications & Notifications</CUR.Center>
-                  </CUR.Td>
-                </CUR.Tr>
-                <CUR.Tr>
-                  <CUR.Td>
-                    <CUR.Center>Security Center</CUR.Center>
-                  </CUR.Td>
-                </CUR.Tr>
-                <CUR.Tr>
-                  <CUR.Td>
-                    <CUR.Center>Help Platform</CUR.Center>
-                  </CUR.Td>
-                </CUR.Tr>
-              </CUR.Tbody>
-            </CUR.Table>
-          </CUR.TableContainer>
-
           <CUR.Accordion>
-            <ProfileInformation />
-
-            {/* <AccountManagement />
-            <PartnersServices />
-            <PaymentsSubscriptions /> */}
+            {displayPanel.map((index) => (
+              <div key={index.index}>{index.element}</div>
+            ))}
           </CUR.Accordion>
         </CUR.GridItem>
         {/*<CUR.GridItem area={"sect2"} w={"80vw"} border={"2px"}>

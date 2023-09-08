@@ -78,7 +78,7 @@ const Menu = () => {
                     </Link>
                   </CUR.Box>
                   <CUR.Box>
-                    <Link reloadDocument to="/view/dashboard/profile">
+                    <Link to="/view/dashboard/profile">
                       <CUR.VStack>
                         <RI.CgProfile />
                         <CUR.Text>Profile</CUR.Text>

@@ -5,14 +5,6 @@ import * as CUR from "@chakra-ui/react";
 interface Props {}
 export let navbarHeight = 0;
 const Navbar = ({}: Props) => {
-  // const navbarRef = useRef<HTMLElement | null>(null);
-  // const [navbarSize, setNavbarSize] = useState(0);
-  // useEffect(() => {
-  //   setNavbarSize(navbarRef.current?.clientHeight);
-  //   navbarHeight = navbarSize;
-  // });
-  // navbarHeight;
-
   return (
     <>
       <CUR.HStack

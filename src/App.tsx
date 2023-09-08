@@ -3,70 +3,33 @@ import * as pages from "./routes";
 import * as dashboard from "./routes/Dashboard";
 import * as CUR from "@chakra-ui/react";
 import Navbar from "./components/Navbar/Navbar";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
-  const useWindowSize = () => {
-    const [windowSize, setWindowSize] = useState({
-      height: innerHeight,
-      width: innerWidth,
-    });
+  const setRouteArea = () => {
+    const navSizeRef = useRef<HTMLElement | null>(null);
+    const [routeHeight, setRouteHeight] = useState(0);
+    const WindowHeight = window.innerHeight;
+    //@ts-ignore
+    const result = WindowHeight - navSizeRef.current?.clientHeight;
 
     useEffect(() => {
-      const handleWindowResizeChange = () => {
-        setWindowSize({
-          ...windowSize,
-          height: innerHeight,
-          width: innerWidth,
-        });
-      };
-      window.addEventListener("resize", handleWindowResizeChange);
+      setTimeout(() => {
+        setRouteHeight(result);
+      }, 1 * 10);
+      addEventListener("resize", setRouteArea);
       return () => {
-        window.removeEventListener("resize", handleWindowResizeChange);
+        removeEventListener("resize", setRouteArea);
       };
     }, []);
-    return windowSize;
+    return { navSizeRef, routeHeight, result };
   };
-
-  const windowSize = useWindowSize();
-
-  const navRef = useRef<HTMLElement | null>(null);
-  const ScreenDisplay = () => {
-    const [displaySize, setDisplaySize] = useState({
-      navbar: 0,
-      routeDisplay: 0,
-    });
-    useEffect(() => {
-      const handleElementSizing = () => {
-        setDisplaySize({
-          ...displaySize,
-          //@ts-ignore
-          navbar: navRef.current?.clientHeight,
-        });
-      };
-
-      window.addEventListener("load", handleElementSizing);
-      return () => {
-        window.removeEventListener("load", handleElementSizing);
-      };
-    }, []);
-    return displaySize;
-  };
-
-  const displaySize = ScreenDisplay();
-  // useEffect(() => {
-  //   console.log(displaySize.routeDisplay);
-  //   setDisplaySize({
-  //     ...displaySize,
-  //     navbar: navRef.current?.clientHeight,
-  //   });
-  // }, [displaySize.routeDisplay]);
-
-  console.log(displaySize.navbar + " navRef");
+  const AppGrid = setRouteArea();
+  const mapGrid = AppGrid.routeHeight;
   const routes = [
     {
       path: "/",
-      element: <pages.Home displayHeight={displaySize.routeDisplay} />,
+      element: <pages.Home mapSpace={AppGrid.result} />,
     },
     {
       path: "/register",
@@ -82,11 +45,11 @@ function App() {
     },
     {
       path: "/view/dashboard/guides/faq",
-      element: <pages.Home displayHeight={displaySize.routeDisplay} />,
+      element: <pages.Home mapSpace={mapGrid} />,
     },
     {
       path: "/view/dashboard/*/listing/:id",
-      element: <pages.Home displayHeight={displaySize.routeDisplay} />,
+      element: <pages.Home mapSpace={mapGrid} />,
     },
     {
       path: "/view/dashboard/profile/create",
@@ -106,11 +69,11 @@ function App() {
     },
     {
       path: "/view/dashboard/profile/favorites",
-      element: <pages.Home displayHeight={displaySize.routeDisplay} />,
+      element: <pages.Home mapSpace={mapGrid} />,
     },
     {
       path: "/view/dashboard/sell/guides/faq/addListing",
-      element: <pages.Home displayHeight={displaySize.routeDisplay} />,
+      element: <pages.Home mapSpace={mapGrid} />,
     },
     {
       path: "/view/dashboard/sell",
@@ -118,39 +81,28 @@ function App() {
     },
     {
       path: "/view/dashboard/listing/add",
-      element: <pages.Home displayHeight={displaySize.routeDisplay} />,
+      element: <pages.Home mapSpace={mapGrid} />,
     },
   ];
   return (
-    <>
-      <CUR.Grid
-        templateAreas={{
-          base: `"Navbar" "Main"`,
-          md: `"Navbar" "Main"`,
-          lg: `"Navbar" "Main"`,
-        }}
-      >
-        <CUR.GridItem area={"Navbar"}>
-          <CUR.Box as="nav" ref={navRef}>
-            <Navbar />
-          </CUR.Box>
-        </CUR.GridItem>
-        <CUR.GridItem
-          area={"Main"}
-          h={`${windowSize.height - displaySize.navbar}px`}
-        >
-          <Routes>
-            {routes.map((route) => (
-              <Route
-                path={route.path}
-                element={route.element}
-                key={route.path}
-              />
-            ))}
-          </Routes>
-        </CUR.GridItem>
-      </CUR.Grid>
-    </>
+    <CUR.Grid
+      templateAreas={`"Navbar" "Main"`}
+      templateColumns={`repeat(1,1fr)`}
+      templateRows={`repeat(2)`}
+    >
+      <CUR.GridItem area={"Navbar"}>
+        <CUR.Box as="nav" ref={AppGrid.navSizeRef}>
+          <Navbar />
+        </CUR.Box>
+      </CUR.GridItem>
+      <CUR.GridItem area={"Main"} h={AppGrid.routeHeight}>
+        <Routes>
+          {routes.map((route) => (
+            <Route path={route.path} element={route.element} key={route.path} />
+          ))}
+        </Routes>
+      </CUR.GridItem>
+    </CUR.Grid>
   );
 }
 
