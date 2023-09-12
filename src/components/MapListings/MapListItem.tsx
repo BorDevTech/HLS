@@ -1,5 +1,5 @@
 import * as CUR from "@chakra-ui/react";
-import { useState } from "react";
+// import { useState } from "react";
 import * as RI from "react-icons/ai";
 
 type Property = {
@@ -123,7 +123,7 @@ const properties: Array<Property> = [
 ];
 console.log(properties.length);
 const MapListItem = () => {
-  const [isFavorite, setFavorite] = useState(false);
+  //   const [isFavorite, setFavorite] = useState(false);
   return (
     <>
       <CUR.Grid templateRows={`repeat(${properties.length},1fr)`} gap={0.5}>
@@ -131,7 +131,6 @@ const MapListItem = () => {
           ({
             status,
             price,
-            style,
             range,
             street,
             city,
@@ -140,7 +139,6 @@ const MapListItem = () => {
             beds,
             baths,
             sqft,
-            favorite,
           }: Property) => (
             <CUR.GridItem rowSpan={1}>
               <CUR.Card border={1} borderRadius={4} borderStyle={"solid"} p={0}>

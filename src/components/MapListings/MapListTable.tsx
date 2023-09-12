@@ -1,6 +1,11 @@
 import * as CUR from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
-import { MapListItem } from ".";
+
+import MapListItem from "./MapListItem";
+import {
+  useRef,
+  useState,
+  // useEffect, ,
+} from "react";
 /* <CUR.Accordion>
             <CUR.AccordionItem>
               <h2>
@@ -55,11 +60,6 @@ const MapListTable = () => {
     I2: 0,
   });
 
-  console.log(sectionRef.current?.clientHeight);
-  console.log(itemsToCount(itemSizeRef.current?.clientHeight, 3));
-  console.log(panelSize.I1);
-  console.log(panelSize.I2);
-
   return (
     <>
       <CUR.Accordion ref={sectionRef} h={"100%"} w={"100%"} allowToggle>
@@ -71,7 +71,9 @@ const MapListTable = () => {
                 setPanelSize({
                   ...panelSize,
                   I1:
+                    //@ts-ignore
                     sectionSize -
+                    //@ts-ignore
                     itemsToCount(itemSizeRef.current?.clientHeight, 2.02),
                   I2: 0,
                 });
