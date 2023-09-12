@@ -1,5 +1,7 @@
+import * as CUR from "@chakra-ui/react";
+
 const MapMenu = () => {
-  return <div>MapMenu</div>;
+  return <></>;
 };
 
 export default MapMenu;

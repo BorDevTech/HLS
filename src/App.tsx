@@ -3,33 +3,12 @@ import * as pages from "./routes";
 import * as dashboard from "./routes/Dashboard";
 import * as CUR from "@chakra-ui/react";
 import Navbar from "./components/Navbar/Navbar";
-import { useEffect, useRef, useState } from "react";
 
 function App() {
-  const setRouteArea = () => {
-    const navSizeRef = useRef<HTMLElement | null>(null);
-    const [routeHeight, setRouteHeight] = useState(0);
-    const WindowHeight = window.innerHeight;
-    //@ts-ignore
-    const result = WindowHeight - navSizeRef.current?.clientHeight;
-
-    useEffect(() => {
-      setTimeout(() => {
-        setRouteHeight(result);
-      }, 1 * 10);
-      addEventListener("resize", setRouteArea);
-      return () => {
-        removeEventListener("resize", setRouteArea);
-      };
-    }, []);
-    return { navSizeRef, routeHeight, result };
-  };
-  const AppGrid = setRouteArea();
-  const mapGrid = AppGrid.routeHeight;
   const routes = [
     {
       path: "/",
-      element: <pages.Home mapSpace={AppGrid.result} />,
+      element: <pages.Home />,
     },
     {
       path: "/register",
@@ -45,11 +24,11 @@ function App() {
     },
     {
       path: "/view/dashboard/guides/faq",
-      element: <pages.Home mapSpace={mapGrid} />,
+      element: <pages.Home />,
     },
     {
       path: "/view/dashboard/*/listing/:id",
-      element: <pages.Home mapSpace={mapGrid} />,
+      element: <pages.Home />,
     },
     {
       path: "/view/dashboard/profile/create",
@@ -69,11 +48,11 @@ function App() {
     },
     {
       path: "/view/dashboard/profile/favorites",
-      element: <pages.Home mapSpace={mapGrid} />,
+      element: <pages.Home />,
     },
     {
       path: "/view/dashboard/sell/guides/faq/addListing",
-      element: <pages.Home mapSpace={mapGrid} />,
+      element: <pages.Home />,
     },
     {
       path: "/view/dashboard/sell",
@@ -81,21 +60,24 @@ function App() {
     },
     {
       path: "/view/dashboard/listing/add",
-      element: <pages.Home mapSpace={mapGrid} />,
+      element: <pages.Home />,
     },
   ];
   return (
     <CUR.Grid
       templateAreas={`"Navbar" "Main"`}
-      templateColumns={`repeat(1,1fr)`}
-      templateRows={`repeat(2)`}
+      h={innerHeight}
+      w={innerWidth}
+      gap={0}
+      templateRows={`repeat(13,1fr)`}
     >
-      <CUR.GridItem area={"Navbar"}>
-        <CUR.Box as="nav" ref={AppGrid.navSizeRef}>
-          <Navbar />
-        </CUR.Box>
-      </CUR.GridItem>
-      <CUR.GridItem area={"Main"} h={AppGrid.routeHeight}>
+      <CUR.GridItem
+        as={Navbar}
+        area={"Navbar"}
+        rowSpan={1}
+        borderColor={"blue.300"}
+      />
+      <CUR.GridItem area={"Main"} rowSpan={12}>
         <Routes>
           {routes.map((route) => (
             <Route path={route.path} element={route.element} key={route.path} />

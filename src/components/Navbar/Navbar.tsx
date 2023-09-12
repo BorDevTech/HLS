@@ -7,27 +7,29 @@ export let navbarHeight = 0;
 const Navbar = ({}: Props) => {
   return (
     <>
-      <CUR.HStack
-        justifyContent={"space-between"}
-        p={{ base: 2, md: 3, lg: 4 }}
-      >
-        <CUR.Show above="base">
-          <Nav.Brand />
+      <nav>
+        <CUR.HStack
+          justifyContent={"space-between"}
+          p={{ base: 2, md: 3, lg: 4 }}
+        >
+          <CUR.Show above="base">
+            <Nav.Brand />
 
-          <CUR.Show above="md">
-            <CUR.Center>
-              <CUR.Show above="lg">
-                <Nav.SearchBar />
-              </CUR.Show>
-            </CUR.Center>
-            <Nav.Navigation />
+            <CUR.Show above="md">
+              <CUR.Center>
+                <CUR.Show above="lg">
+                  <Nav.SearchBar />
+                </CUR.Show>
+              </CUR.Center>
+              <Nav.Navigation />
+            </CUR.Show>
+            <CUR.Show below="md">
+              <Nav.Menu />
+            </CUR.Show>
           </CUR.Show>
-          <CUR.Show below="md">
-            <Nav.Menu />
-          </CUR.Show>
-        </CUR.Show>
-      </CUR.HStack>
-      <CUR.Divider />
+        </CUR.HStack>
+        <CUR.Divider />
+      </nav>
     </>
   );
 };
