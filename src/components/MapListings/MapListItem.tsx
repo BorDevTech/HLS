@@ -110,7 +110,7 @@ const properties: Array<Property> = [
     price: { sign: "$", amount: 5000 },
     style: "Single Family",
     range: { distance: 50, measure: "mi" },
-    street: "1314 Maple St",
+    street: "1316 Maple St",
     city: "Tampa",
     state: "Florida",
     zipCode: 30297,
@@ -140,7 +140,7 @@ const MapListItem = () => {
             baths,
             sqft,
           }: Property) => (
-            <CUR.GridItem rowSpan={1}>
+            <CUR.GridItem rowSpan={1} key={street}>
               <CUR.Card border={1} borderRadius={4} borderStyle={"solid"} p={0}>
                 <CUR.CardBody p={1}>
                   <CUR.Grid

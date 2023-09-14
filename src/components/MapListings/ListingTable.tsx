@@ -2,6 +2,7 @@ import { useState } from "react";
 import * as Map from "./index";
 import * as CUR from "@chakra-ui/react";
 import * as CUI from "@chakra-ui/icons";
+import Filters from "./Filters";
 
 const ListingTable = () => {
   //Needed states

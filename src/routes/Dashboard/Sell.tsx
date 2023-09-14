@@ -1,5 +1,7 @@
 const Sell = () => {
-  return <div>Sell</div>;
+  console.log(import.meta);
+
+  return <>Sell</>;
 };
 
 export default Sell;
