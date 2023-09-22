@@ -27,6 +27,8 @@ type Property = {
   sqft: number;
   yearBuilt: number;
   favorite: boolean;
+  lng: number;
+  lat: number;
 };
 
 const properties: Array<Property> = [
@@ -44,6 +46,8 @@ const properties: Array<Property> = [
     sqft: 1000,
     yearBuilt: 1980,
     favorite: false,
+    lng: 0,
+    lat: 0,
   },
   {
     status: "For Sale",
@@ -59,6 +63,8 @@ const properties: Array<Property> = [
     sqft: 1000,
     yearBuilt: 1990,
     favorite: false,
+    lng: 0,
+    lat: 0,
   },
   {
     status: "For Sale",
@@ -74,6 +80,8 @@ const properties: Array<Property> = [
     sqft: 1000,
     yearBuilt: 2000,
     favorite: false,
+    lng: 0,
+    lat: 0,
   },
   {
     status: "For Sale",
@@ -89,6 +97,8 @@ const properties: Array<Property> = [
     sqft: 1000,
     yearBuilt: 2010,
     favorite: false,
+    lng: 0,
+    lat: 0,
   },
   {
     status: "For Sale",
@@ -104,6 +114,8 @@ const properties: Array<Property> = [
     sqft: 1000,
     yearBuilt: 2020,
     favorite: false,
+    lng: 0,
+    lat: 0,
   },
   {
     status: "For Sale",
@@ -119,14 +131,15 @@ const properties: Array<Property> = [
     sqft: 1000,
     yearBuilt: 2020,
     favorite: false,
+    lng: 0,
+    lat: 0,
   },
 ];
-console.log(properties.length);
 const MapListItem = () => {
   //   const [isFavorite, setFavorite] = useState(false);
   return (
     <>
-      <CUR.Grid templateRows={`repeat(${properties.length},1fr)`} gap={0.5}>
+      <CUR.Grid gap={1}>
         {properties.map(
           ({
             status,
@@ -139,61 +152,55 @@ const MapListItem = () => {
             beds,
             baths,
             sqft,
+            lat,
+            lng,
           }: Property) => (
-            <CUR.GridItem rowSpan={1} key={street}>
-              <CUR.Card border={1} borderRadius={4} borderStyle={"solid"} p={0}>
-                <CUR.CardBody p={1}>
-                  <CUR.Grid
-                    templateColumns={`repeat(10,1fr)`}
-                    templateRows={`repeat(3,1fr)`}
-                    h={175}
-                    w={"100%"}
-                  >
-                    <CUR.GridItem colSpan={5} rowSpan={5}>
-                      <CUR.Skeleton h={"100%"} w={"100%"} />
-                    </CUR.GridItem>
-                    <CUR.GridItem colSpan={2} rowSpan={1}>
-                      <CUR.HStack>
-                        <CUR.Text>{status}</CUR.Text>
-                        <CUR.Spacer />
-                        <CUR.Text>
-                          {price.sign}
-                          {price.amount}
-                        </CUR.Text>
-                      </CUR.HStack>
-                    </CUR.GridItem>
-                    <CUR.GridItem colSpan={2} rowSpan={1}>
-                      <CUR.Text>
+            <CUR.GridItem key={street}>
+              <CUR.Card border={"2px"} borderColor={"black"}>
+                <CUR.Grid
+                  templateColumns={`repeat(6,1fr)`}
+                  templateRows={`repeat(4,1fr)`}
+                >
+                  <CUR.GridItem colSpan={2} rowSpan={4}>
+                    <CUR.Skeleton h={"100%"} w={"100%"} />
+                  </CUR.GridItem>
+                  <CUR.GridItem colSpan={3} rowSpan={1}>
+                    <CUR.Center>
+                      <CUR.Heading size={"md"}>
+                        {status} {price.sign}
+                        {price.amount}
+                      </CUR.Heading>
+                      <CUR.Spacer />
+                    </CUR.Center>
+                  </CUR.GridItem>
+                  <CUR.GridItem colSpan={1} rowSpan={1}>
+                    <CUR.HStack>
+                      <CUR.Spacer />
+                      <CUR.Button p={0} h={5}>
                         {range.distance}
                         {range.measure}
-                      </CUR.Text>
-                    </CUR.GridItem>
-                    <CUR.GridItem colSpan={1} rowSpan={1}>
-                      <CUR.Center>
-                        <CUR.IconButton aria-label="Favorite Property">
-                          <RI.AiFillHeart />
-                        </CUR.IconButton>
-                      </CUR.Center>
-                    </CUR.GridItem>
-                    <CUR.GridItem colSpan={5} rowSpan={2}>
-                      <CUR.VStack>
-                        <CUR.Text>{` ${street} ${city}, ${state} ${zipCode}`}</CUR.Text>
-                        <CUR.HStack>
-                          <CUR.Text>{beds} bd</CUR.Text>
-                          <CUR.Text>{baths} ba</CUR.Text>
-                          <CUR.Text>{sqft} sqft</CUR.Text>
-                        </CUR.HStack>
-                      </CUR.VStack>
-                    </CUR.GridItem>
+                      </CUR.Button>
+                      <CUR.Button p={0} h={5}>
+                        {lat},{lng}
+                      </CUR.Button>
+                      <RI.AiFillHeart />
+                      <CUR.Spacer />
+                    </CUR.HStack>
+                  </CUR.GridItem>
 
-                    {/*
-                    
-                    
-                    
-
-                     */}
-                  </CUR.Grid>
-                </CUR.CardBody>
+                  <CUR.GridItem colSpan={4} rowSpan={3}>
+                    <CUR.Center>
+                      <CUR.HStack>
+                        <CUR.Text>
+                          {` ${street}, ${city}, ${state} ${zipCode}`}
+                        </CUR.Text>
+                        <CUR.Text>{beds} bd</CUR.Text>
+                        <CUR.Text>{baths} ba</CUR.Text>
+                        <CUR.Text>{sqft} sqft</CUR.Text>
+                      </CUR.HStack>
+                    </CUR.Center>
+                  </CUR.GridItem>
+                </CUR.Grid>
               </CUR.Card>
             </CUR.GridItem>
           )

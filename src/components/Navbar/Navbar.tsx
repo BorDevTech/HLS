@@ -28,7 +28,6 @@ const Navbar = ({}: Props) => {
             </CUR.Show>
           </CUR.Show>
         </CUR.HStack>
-        <CUR.Divider />
       </nav>
     </>
   );
