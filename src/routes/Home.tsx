@@ -38,7 +38,6 @@ const Home = ({}: Props) => {
       />
       <CUR.GridItem
         area={"MapList"}
-        border={"1px"}
         colSpan={{ lg: 3 }}
         rowSpan={{ base: 4, lg: 10 }}
         borderColor={"yellow.600"}
