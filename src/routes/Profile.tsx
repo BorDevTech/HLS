@@ -1,8 +1,8 @@
 import * as CUR from "@chakra-ui/react";
-// import * as CUI from "@chakra-ui/icons";
+import * as CUI from "@chakra-ui/icons";
 import {
   // React,
-  // useRef,
+  useRef,
   useState,
 } from "react";
 // import EditableInputControls from "../components/EditableInput/EditableInputControls";
@@ -10,73 +10,92 @@ import ProfileInformation from "../components/ProfileMenuList/ProfileInformation
 import AccountManagement from "./../components/ProfileMenuList/AccountManagement";
 import PartnersServices from "./../components/ProfileMenuList/PartnersServices";
 import PaymentsSubscriptions from "./../components/ProfileMenuList/PaymentsSubscriptions";
-import AccountSettings from "./../components/ProfileMenuList/AccountSettings";
 import CommunicationNotifications from "./../components/ProfileMenuList/CommunicationNotifications";
 import SecurityCenter from "./../components/ProfileMenuList/SecurityCenter";
 import HelpPlatform from "./../components/ProfileMenuList/HelpPlatform";
 
 const Profile = () => {
+  const portalRef = useRef<HTMLDivElement | null>(null);
   //@ts-ignore
   const [displayPanel, setDisplayPanel] = useState([
-    { index: 0, element: <ProfileInformation /> },
-    { index: 1, element: <AccountManagement /> },
-    { index: 2, element: <PartnersServices /> },
-    { index: 3, element: <PaymentsSubscriptions /> },
-    { index: 4, element: <AccountSettings /> },
-    { index: 5, element: <CommunicationNotifications /> },
-    { index: 6, element: <SecurityCenter /> },
-    { index: 7, element: <HelpPlatform /> },
+    {
+      section: 0,
+      title: "Profile Information",
+      element: <ProfileInformation />,
+    },
+    { section: 1, title: "Account Management", element: <AccountManagement /> },
+    { section: 2, title: "Partners Services", element: <PartnersServices /> },
+    {
+      section: 3,
+      title: "Payments Subscriptions",
+      element: <PaymentsSubscriptions />,
+    },
+    {
+      section: 4,
+      title: "Communication Notifications",
+      element: <CommunicationNotifications />,
+    },
+    { section: 5, title: "Security Center", element: <SecurityCenter /> },
+    { section: 6, title: "Help Platform", element: <HelpPlatform /> },
   ]);
 
   // const currentRef = useRef();
+
   return (
     <>
       <CUR.Grid
         templateAreas={{
           base: `"sect1 sect2"`,
         }}
+        templateColumns={`repeat(6,1fr)`}
+        templateRows={`repeat(1,1fr)`}
         h={`100%`}
+        w={`100%`}
       >
-        <CUR.GridItem area={"sect1"} w={"20vw"} border={"2px"}>
+        <CUR.GridItem area={"sect1"} colSpan={1}>
           <CUR.Accordion>
-            {displayPanel.map((index) => (
-              <div key={index.index}>{index.element}</div>
+            {displayPanel.map(({ section, title, element }) => (
+              <CUR.AccordionItem key={section} as={CUR.Card} borderRadius={0}>
+                {({ isExpanded }) => (
+                  <>
+                    <h2>
+                      <CUR.AccordionButton
+                        borderRight={isExpanded ? 0 : "1px"}
+                        borderColor={isExpanded ? "" : "whiteAlpha.300"}
+                      >
+                        <CUR.Box as="span" flex="1" textAlign="left">
+                          {title}
+                        </CUR.Box>
+                        {isExpanded ? null : <CUI.ChevronRightIcon />}
+                      </CUR.AccordionButton>
+                    </h2>
+                    <CUR.Portal containerRef={portalRef}>
+                      <CUR.AccordionPanel
+                        p={0}
+                        h={portalRef.current?.clientHeight}
+                      >
+                        <CUR.Card
+                          h={"100%"}
+                          borderRadius={0}
+                          borderTop={"1px"}
+                          borderRight={"1px"}
+                          borderBottom={"1px"}
+                          borderTopRightRadius={10}
+                          borderBottomLeftRadius={10}
+                          borderBottomRightRadius={10}
+                          borderColor={"whiteAlpha.300"}
+                        >
+                          {element}
+                        </CUR.Card>
+                      </CUR.AccordionPanel>
+                    </CUR.Portal>
+                  </>
+                )}
+              </CUR.AccordionItem>
             ))}
           </CUR.Accordion>
         </CUR.GridItem>
-        {/*<CUR.GridItem area={"sect2"} w={"80vw"} border={"2px"}>
-          <CUR.Box bg={"blue"} p={5}>
-            <CUR.Center>
-              <CUR.Heading>Profile</CUR.Heading>
-            </CUR.Center>
-          </CUR.Box>
-          <CUR.Spacer h={25} />
-          <CUR.Center>
-            <CUR.VStack>
-              <CUR.Avatar name={`${fullName}`} src={imageSRC} size={"2xl"} />
-              <CUR.Center>
-                <CUR.Heading>
-                  <CUR.HStack>
-                    <CUR.Editable textAlign="center" isPreviewFocusable={false}>
-                      <CUR.EditablePreview />
-                      <CUR.Input
-                        as={CUR.EditableInput}
-                        value={User.FullName}
-                        onChange={handleFullNameChange}
-                      />
-                      <EditableInputControls />
-                    </CUR.Editable>
-                  </CUR.HStack>
-                </CUR.Heading>
-              </CUR.Center>
-              <CUR.Box
-                bgGradient={"linear(to-r,green.300,blue.300)"}
-                borderRadius={"base"}
-                ref={currentRef}
-              ></CUR.Box>
-            </CUR.VStack>
-          </CUR.Center> 
-        </CUR.GridItem>*/}
+        <CUR.GridItem area={"sect2"} colSpan={5} ref={portalRef}></CUR.GridItem>
       </CUR.Grid>
     </>
   );

@@ -6,46 +6,7 @@ import {
   useState,
   // useEffect, ,
 } from "react";
-/* <CUR.Accordion>
-            <CUR.AccordionItem>
-              <h2>
-                <CUR.AccordionButton>
-                  <CUR.Box as="span" flex="1" pt={2} textAlign="center">
-                    Advanced Filters
-                  </CUR.Box>
-                  <CUR.AccordionIcon />
-                </CUR.AccordionButton>
-              </h2>
-              <CUR.AccordionPanel pb={4} bg={"blue.300"}>
-                <CUR.AspectRatio ratio={1}>
-                  <CUR.Text>
-                    MIN to MAX Price MIN to MAX Beds /Bath MIN to MAX Sqft MIN
-                    to MAX Range(distance away from host location) MIN to MAX
-                    Year
-                  </CUR.Text>
-                </CUR.AspectRatio>
-              </CUR.AccordionPanel>
-            </CUR.AccordionItem>
-            <CUR.AccordionItem>
-              <h2>
-                <CUR.AccordionButton>
-                  <CUR.Box as="span" flex="1" pt={2} textAlign="center">
-                    Properties
-                  </CUR.Box>
-                  <CUR.AccordionIcon />
-                </CUR.AccordionButton>
-              </h2>
-              <CUR.AccordionPanel pb={4} bg={"blue.300"}>
-                <CUR.AspectRatio ratio={1}>
-                  <CUR.Text>
-                    MIN to MAX Price MIN to MAX Beds /Bath MIN to MAX Sqft MIN
-                    to MAX Range(distance away from host location) MIN to MAX
-                    Year
-                  </CUR.Text>
-                </CUR.AspectRatio>
-              </CUR.AccordionPanel>
-            </CUR.AccordionItem>
-          </CUR.Accordion>*/
+
 const MapListTable = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   // const sectionSize = sectionRef.current?.clientHeight;
