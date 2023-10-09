@@ -649,6 +649,7 @@ const ListingTable = () => {
                         panel1Ref.current?.clientHeight * 3.1
                       : panel1Ref.current?.clientHeight
                   }
+                  overflowY={"scroll"}
                 >
                   {/* <Map.MapListTable /> */}
                   <Map.MapListItem />
