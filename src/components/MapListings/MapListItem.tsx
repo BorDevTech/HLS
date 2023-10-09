@@ -58,8 +58,8 @@ type Property = {
 const MapListItem = () => {
   const [localPropertySave, setLocalPropertySave] = useState<Property[]>([]);
 
-  async function fetchProperties(propertiesFile: string) {
-    await fetch(propertiesFile).then((res) => {
+  function fetchProperties(propertiesFile: string) {
+    fetch(propertiesFile).then((res) => {
       !res.ok
         ? console.error(`ERROR: ${res.status}`)
         : console.log(`SUCCESS: PropertiesJSON fetched`);
